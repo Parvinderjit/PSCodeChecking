@@ -1,7 +1,7 @@
 name: ps_code_checking
-description: A new Flutter package project.
+description: Library to add addional step in security by verifing difficult to read word like captcha. 
 version: 0.0.1
-homepage:
+homepage: 
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
