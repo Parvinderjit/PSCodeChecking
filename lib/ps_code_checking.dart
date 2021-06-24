@@ -47,17 +47,29 @@ class RandomColorGenerator implements ColorGenerator {
   final int r;
   final int g;
   final int b;
+  final int a;
+  final bool alsoRandomAlpha;
 
-  /// Here r, g, b is the max value from rane 0-255. Color will be generated
-  /// from Random().nextInt(value). Where value can be random value based on
+  /// Here a, r, g, b is the max value from range 0-255. Color will be generated
+  /// from Random().nextInt(value). Where value can be random value based on the
+  /// respective passed values
+  const RandomColorGenerator({
+    this.a = 255,
+    this.r = 255,
+    this.g = 255,
+    this.b = 255,
+    this.alsoRandomAlpha = false,
+  });
+
   /// your input r, g, b values
-  const RandomColorGenerator({this.r = 255, this.g = 255, this.b = 255});
   @override
   Color getColor() {
-    final r = Random().nextInt(255);
-    final g = Random().nextInt(225);
-    final b = Random().nextInt(200);
-    return Color.fromARGB(255, r, g, b);
+    final random = Random();
+    final r = random.nextInt(this.r);
+    final g = random.nextInt(this.g);
+    final b = random.nextInt(this.b);
+    final a = alsoRandomAlpha ? random.nextInt(this.a) : this.a;
+    return Color.fromARGB(a, r, g, b);
   }
 }
 
