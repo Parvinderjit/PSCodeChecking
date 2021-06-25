@@ -135,8 +135,9 @@ class PSCodeCheckingWidget extends StatefulWidget {
 
 class _PSCodeCheckingWidgetState extends State<PSCodeCheckingWidget> {
   late String code;
-
+  Map? _cachedData;
   Map getRandomData(double width) {
+    if (_cachedData != null) return _cachedData!;
     List list = code.split("");
 
     double x = 0.0;
@@ -197,6 +198,7 @@ class _PSCodeCheckingWidgetState extends State<PSCodeCheckingWidget> {
       "dotData": dotData,
       "lineData": linedata
     };
+    _cachedData = checkCodeDrawData;
     return checkCodeDrawData;
   }
 
@@ -237,6 +239,7 @@ class _PSCodeCheckingWidgetState extends State<PSCodeCheckingWidget> {
 
     setState(() {
       // here we are updating the widget
+      _cachedData = null;
     });
   }
 
@@ -254,6 +257,12 @@ class _PSCodeCheckingWidgetState extends State<PSCodeCheckingWidget> {
       oldWidget.controller.removeListener(_refreshCode);
       widget.controller.addListener(_refreshCode);
     }
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(_refreshCode);
+    super.dispose();
   }
 }
 

@@ -1,4 +1,8 @@
 
+## 0.0.3
+* Fix: sate of the view get changed when there is an build recall. Now only [CodeCheckController.refresh] method can refresh the widget
+
+
 ## 0.0.2
 * Fixed documentation on [RandomColorGenerator]
 * Added alpha value  to [RandomColorGenerator] class 
